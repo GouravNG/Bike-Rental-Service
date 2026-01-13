@@ -9,6 +9,7 @@ import {
 import { TRentals } from "@/types/bike.types"
 import { CircleQuestionMark } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { Button } from "./ui/button"
 
 const RentalCards = (data: TRentals) => {
   return (
@@ -30,15 +31,22 @@ const RentalCards = (data: TRentals) => {
           </CardDescription>
           <div>
             <div className="flex items-center justify-start gap-2">
-              <p className="font-bold text-2xl">₹{data.hourlyRate}</p>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <CircleQuestionMark size={20} className="text-blue-500" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Hourly Rate</p>
-                </TooltipContent>
-              </Tooltip>
+              <div className="flex items-center justify-between gap-2">
+                <p className="font-bold text-2xl">₹{data.hourlyRate}</p>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <CircleQuestionMark size={20} className="text-blue-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Hourly Rate</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+              <div className="ml-auto">
+                <Button className="bg-orange-500 hover:bg-orange-600 hover:cursor-pointer">
+                  Reserve
+                </Button>
+              </div>
             </div>
           </div>
         </CardHeader>
