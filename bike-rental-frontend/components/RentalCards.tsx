@@ -7,9 +7,10 @@ import {
   CardTitle,
 } from "./ui/card"
 import { TRentals } from "@/types/bike.types"
-import { CircleQuestionMark } from "lucide-react"
+import { Bike, CircleQuestionMark } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { Button } from "./ui/button"
+import { Badge } from "./ui/badge"
 
 const RentalCards = (data: TRentals) => {
   return (
@@ -25,6 +26,7 @@ const RentalCards = (data: TRentals) => {
           />
         </CardContent>
         <CardHeader>
+          <Badge variant={"secondary"}>{data.category}</Badge>
           <CardTitle>{data.name}</CardTitle>
           <CardDescription className="line-clamp-3 min-h-[3.6em]">
             {data.description ?? "No description"}
@@ -44,7 +46,8 @@ const RentalCards = (data: TRentals) => {
               </div>
               <div className="ml-auto">
                 <Button className="bg-orange-500 hover:bg-orange-600 hover:cursor-pointer">
-                  Reserve
+                  Book
+                  <Bike />
                 </Button>
               </div>
             </div>
