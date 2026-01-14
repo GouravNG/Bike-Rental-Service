@@ -3,9 +3,9 @@ import { BikeIcon, CircleUserRound, Phone } from "lucide-react"
 const Header = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <div className="sticky top-0 z-10">
+      <div className="sticky top-0 z-10 shadow-md">
         <span className="p-1 text-xs flex justify-end items-center pr-4 gap-2 bg-green-200">
-          <Phone size={15}fill="#000" />
+          <Phone size={15} fill="#000" />
           +91 9090909090
         </span>
         <div className="flex items-center justify-center px-2 py-4 bg-slate-900">
@@ -24,7 +24,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
             </ul>
           </nav>
           <div className="flex-1 flex justify-end pr-4">
-            <CircleUserRound size={30} className="text-white"/>
+            <CircleUserRound size={30} className="text-white" />
           </div>
         </div>
       </div>
