@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import {
   Card,
@@ -11,8 +12,11 @@ import { Bike, CircleQuestionMark } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
+import { useToken } from "@/store/common.store"
+import Link from "next/link"
 
 const RentalCards = (data: TRentals) => {
+  const { token } = useToken()
   return (
     <>
       <Card className="shadow-sm hover:shadow-md hover:scale-105 transition-all">
@@ -45,10 +49,12 @@ const RentalCards = (data: TRentals) => {
                 </Tooltip>
               </div>
               <div className="ml-auto">
-                <Button className="bg-orange-500 hover:bg-orange-600 hover:cursor-pointer">
-                  Book
-                  <Bike />
-                </Button>
+                <Link href={token === null ? "/auth" : "/booking"}>
+                  <Button className="bg-orange-500 hover:bg-orange-600 hover:cursor-pointer">
+                    Book
+                    <Bike />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
