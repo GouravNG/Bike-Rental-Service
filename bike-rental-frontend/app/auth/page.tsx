@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -10,8 +11,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useLogin } from "@/query/hooks/auth.hooks"
+import { useState } from "react"
 
 export default function TabsDemo() {
+  const [email, setEmail] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const { mutate, isPending } = useLogin()
   return (
     <div className="w-full flex items-center justify-center p-8">
       <div className="flex flex-col w-full max-w-sm gap-6 ">
@@ -54,15 +60,30 @@ export default function TabsDemo() {
                     id="useremail"
                     type="text"
                     placeholder="Enter your email id"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="grid gap-3">
                   <Label htmlFor="userpassword">Password</Label>
-                  <Input id="userpassword" type="password" />
+                  <Input
+                    id="userpassword"
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </div>
               </CardContent>
               <CardFooter>
-                <Button>Login</Button>
+                <Button
+                  disabled={isPending}
+                  onClick={() => {
+                    mutate({
+                      email,
+                      password,
+                    })
+                  }}
+                >
+                  Login
+                </Button>
               </CardFooter>
             </Card>
           </TabsContent>
