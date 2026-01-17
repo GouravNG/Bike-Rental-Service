@@ -1,10 +1,10 @@
 import { create } from "zustand"
 import { combine, persist } from "zustand/middleware"
 import { useShallow } from "zustand/shallow"
-const useCommonStore = create(
+export const useCommonStore = create(
   persist(
     combine({ token: null as null | string }, (set) => ({
-      setToken: (token: string) => set({ token: token }),
+      setToken: (token: string | null) => set({ token: token }),
     })),
     { name: "common-store" }
   )
