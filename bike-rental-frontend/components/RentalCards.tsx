@@ -12,11 +12,12 @@ import { Bike, CircleQuestionMark } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
-import { useToken } from "@/store/common.store"
+import { useBikeId, useToken } from "@/store/common.store"
 import Link from "next/link"
 
 const RentalCards = (data: TRentals) => {
   const { token } = useToken()
+  const { setBikeSelected } = useBikeId()
   return (
     <>
       <Card className="shadow-sm hover:shadow-md hover:scale-105 transition-all">
@@ -50,7 +51,10 @@ const RentalCards = (data: TRentals) => {
               </div>
               <div className="ml-auto">
                 <Link href={token === null ? "/auth" : "/booking"}>
-                  <Button className="bg-orange-500 hover:bg-orange-600 hover:cursor-pointer">
+                  <Button
+                    className="bg-orange-500 hover:bg-orange-600 hover:cursor-pointer"
+                    onClick={() => setBikeSelected(data.id)}
+                  >
                     Book
                     <Bike />
                   </Button>

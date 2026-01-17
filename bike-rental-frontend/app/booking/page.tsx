@@ -10,11 +10,13 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useCreateBooking } from "@/query/hooks/booking.hook"
+import { useBikeId } from "@/store/common.store"
 import { useState } from "react"
 import { DateRange } from "react-day-picker"
 
 const Booking = () => {
   const { mutate, isPending } = useCreateBooking()
+  const { bikeSelected } = useBikeId()
 
   const [range, setRange] = useState<DateRange | undefined>({
     from: new Date(),
@@ -44,7 +46,7 @@ const Booking = () => {
         disabled={isPending || !range?.from || !range?.to}
         onClick={() =>
           mutate({
-            bikeId: 1,
+            bikeId: bikeSelected!,
             startTime: range!.from!.toISOString().split(".")[0],
             endTime: range!.to!.toISOString().split(".")[0],
           })
